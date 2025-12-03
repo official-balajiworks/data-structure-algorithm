@@ -16,8 +16,6 @@ def topological_sort(graph):
     while queue:
         u = queue.popleft()
         top_order.append(u)
-
-        # Decrease the in-degree of all neighboring nodes
         for v in graph[u]:
             in_degree[v] -= 1
             if in_degree[v] == 0:
