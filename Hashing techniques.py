@@ -1,6 +1,7 @@
 # -------------------------------------
 # Hashing Techniques in One Program
 # -------------------------------------
+from sympy import isprime, prevprime
 
 class SeparateChaining:
     def __init__(self, size):
@@ -58,14 +59,25 @@ class DoubleHashing:
         return key % self.size
 
     def h2(self, key):
-        return 7 - (key % 7)
+        # choose a prime smaller than size
+        R = prevprime(self.size)
+        step = R - (key % R)
+
+        if step == 0:
+            step = 1
+        return step
 
     def insert(self, key):
         index = self.h1(key)
         step = self.h2(key)
+        start = index
 
         while self.table[index] != -1:
             index = (index + step) % self.size
+
+            if index == start:
+                print("Hash Table Full")
+                return
 
         self.table[index] = key
 
