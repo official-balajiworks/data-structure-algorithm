@@ -25,6 +25,10 @@ class BaseHashing:
             if key != -1:
                 self.insert(key)
 
+    def display(self):
+         for i in range(self.size):
+                print(f"{i} --> {self.table[i]}")
+
 
 # ------------ SEPARATE CHAINING ---------------
 class SeparateChaining:
@@ -57,10 +61,6 @@ class LinearProbing(BaseHashing):
         self.table[index] = key
         self.count += 1
 
-    def display(self):
-        for i in range(self.size):
-            print(f"{i} --> {self.table[i]}")
-
 
 # ------------ QUADRATIC PROBING -------------------
 class QuadraticProbing(BaseHashing):
@@ -78,10 +78,6 @@ class QuadraticProbing(BaseHashing):
 
         self.table[(index + i*i) % self.size] = key
         self.count += 1
-
-    def display(self):
-        for i in range(self.size):
-            print(f"{i} --> {self.table[i]}")
 
 
 # ------------ DOUBLE HASHING -------------------
@@ -109,11 +105,6 @@ class DoubleHashing(BaseHashing):
 
         self.table[index] = key
         self.count += 1
-
-    def display(self):
-        for i in range(self.size):
-            print(f"{i} --> {self.table[i]}")
-
 
 # ------------------- MAIN PROGRAM --------------------
 
