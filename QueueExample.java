@@ -9,18 +9,19 @@ public class QueueExample {
             System.out.println("\n--- QUEUE OPERATIONS ---");
             System.out.println("1. Enqueue");
             System.out.println("2. Dequeue");
-            System.out.println("3. Peek");
+            System.out.println("3. Peek (Front)");
             System.out.println("4. Display");
-            System.out.println("5. Exit");
+            System.out.println("5. Rear (Last Element)");
+            System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
 
-            int choice = Integer.parseInt(sc.nextLine()); // Proper console input
+            int choice = Integer.parseInt(sc.nextLine());
 
             switch (choice) {
                 case 1:
                     System.out.print("Enter value to enqueue: ");
                     int val = Integer.parseInt(sc.nextLine());
-                    queue.add(val); // enqueue
+                    queue.add(val); 
                     System.out.println(val + " added to queue");
                     break;
 
@@ -44,7 +45,16 @@ public class QueueExample {
                     System.out.println("Queue: " + queue);
                     break;
 
-                case 5:
+                case 5: // REAR
+                    if (!queue.isEmpty()) {
+                        System.out.println("Rear element: " +
+                            ((LinkedList<Integer>) queue).getLast());
+                    } else {
+                        System.out.println("Queue is empty!");
+                    }
+                    break;
+
+                case 6:
                     System.out.println("Exiting...");
                     return;
 
