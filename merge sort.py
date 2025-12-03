@@ -1,11 +1,14 @@
 def merge_sort(arr):
     if len(arr) <= 1:
         return arr
+
     mid = len(arr) // 2
     left = merge_sort(arr[:mid])
     right = merge_sort(arr[mid:])
+
     result = []
     i = j = 0
+
     while i < len(left) and j < len(right):
         if left[i] <= right[j]:
             result.append(left[i])
@@ -13,11 +16,21 @@ def merge_sort(arr):
         else:
             result.append(right[j])
             j += 1
+
     result.extend(left[i:])
     result.extend(right[j:])
+
     return result
+
+
 if __name__ == "__main__":
-    arr = [38, 27, 43, 3, 9, 82, 10]
+    n = int(input("Enter number of elements: "))
+
+    arr = []
+    print("Enter the elements:")
+    for _ in range(n):
+        arr.append(int(input()))
+
     print("Original List:", arr)
     sorted_arr = merge_sort(arr)
     print("Sorted List (Merge Sort):", sorted_arr)
