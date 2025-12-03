@@ -53,12 +53,13 @@ class DoubleHashing:
     def __init__(self, size):
         self.size = size
         self.table = [-1] * size
+        self.prime = prevprime(size) 
 
     def h1(self, key):
         return key % self.size
 
     def h2(self, key):
-        return prevprime(self.size) - (key % prevprime(self.size))
+        return self.prime - (key % self.prime)
 
     def insert(self, key):
         index = self.h1(key)
