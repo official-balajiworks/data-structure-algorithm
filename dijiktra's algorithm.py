@@ -1,24 +1,24 @@
 import heapq
 
 def dijkstra(graph, start):
-    distance = {node: float('inf') for node in graph}
-    distance[start] = 0
+    d = {node: float('inf') for node in graph}
+    d[start] = 0
     pq = [(0, start)]
 
     while pq:
         c, n = heapq.heappop(pq)
 
         # Skip if this distance is outdated
-        if c > distance[n]:
+        if c > d[n]:
             continue
 
         for ne, w in graph[n].items():
             n_d = c + w
-            if n_d < distance[ne]:
-                distance[ne] = n_d
+            if n_d < d[ne]:
+                d[ne] = n_d
                 heapq.heappush(pq, (n_d, ne))
                 
-    return distance
+    return d
 
 
 # -------------------------
