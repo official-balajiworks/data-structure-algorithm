@@ -1,54 +1,67 @@
 import heapq
 
-def dijkstra(graph, start):
-    d = {node: float('inf') for node in graph}
-    d[start] = 0
-    pq = [(0, start)]
+# -----------------------------------
+# Dijkstra Class
+# -----------------------------------
+class Dijkstra:
+    def __init__(self):
+        self.graph = {}
 
-    while pq:
-        c, n = heapq.heappop(pq)
+    def add_node(self, node):
+        if node not in self.graph:
+            self.graph[node] = {}
 
-        if c > d[n]:
-            continue
+    def add_edge(self, u, v, w):
+        self.graph[u][v] = w
+        self.graph[v][u] = w   # Undirected graph
 
-        for ne, w in graph[n].items():
-            new_d = c + w
-            if new_d < d[ne]:
-                d[ne] = new_d
-                heapq.heappush(pq, (new_d, ne))
+    def shortest_path(self, start):
+        dist = {node: float('inf') for node in self.graph}
+        dist[start] = 0
+        pq = [(0, start)]
 
-    return d
+        while pq:
+            c, node = heapq.heappop(pq)
+
+            if c > dist[node]:
+                continue
+
+            for neigh, weight in self.graph[node].items():
+                new_d = c + weight
+                if new_d < dist[neigh]:
+                    dist[neigh] = new_d
+                    heapq.heappush(pq, (new_d, neigh))
+
+        return dist
 
 
-# -------------------------
-# INPUT GRAPH
-# -------------------------
-graph = {}
+# -----------------------------------
+# USER INPUT
+# -----------------------------------
+
+obj = Dijkstra()
 
 n = int(input("Enter number of nodes: "))
 nodes = input("Enter node names separated by space: ").split()
 
-# Initialize adjacency list
 for node in nodes:
-    graph[node] = {}
+    obj.add_node(node)
 
 e = int(input("\nEnter number of edges: "))
 print("Enter edges in format: node1 node2 weight")
 
 for _ in range(e):
-    a, b, w = input().split()
-    w = int(w)
-    graph[a][b] = w
-    graph[b][a] = w  # undirected graph
+    u, v, w = input().split()
+    obj.add_edge(u, v, int(w))
 
-start = input("\nEnter starting node: ").strip()
+start = input("\nEnter starting node: ")
 
-# Run Dijkstra
-result = dijkstra(graph, start)
+# Run Dijkstra using OOP
+result = obj.shortest_path(start)
 
-# -------------------------
+# -----------------------------------
 # PRINT RESULT
-# -------------------------
+# -----------------------------------
 print(f"\nShortest distances from {start}:")
 for node, dist in result.items():
     print(f"{start} → {node} = {dist}")
