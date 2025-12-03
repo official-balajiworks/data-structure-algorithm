@@ -3,7 +3,7 @@ import java.util.*;
 public class QueueExample {
     public static void main(String[] args) {
 
-        java.util.Queue<Integer> queue = new java.util.LinkedList<>();
+        Queue<Integer> queue = new java.util.LinkedList<>();
         Scanner sc = new Scanner(System.in);
 
         while (true) {

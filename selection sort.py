@@ -8,13 +8,7 @@ def selection_sort(arr):
     return arr
 
 
-# 🔹 Get input from user
-n = int(input("Enter number of elements: "))
-
-arr = []
-print("Enter the elements:")
-for _ in range(n):
-    arr.append(int(input()))
+arr = list(map(int, input("Enter numbers separated by space: ").split()))
 
 print("Original List:", arr)
 sorted_arr = selection_sort(arr.copy())

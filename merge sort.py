@@ -24,12 +24,7 @@ def merge_sort(arr):
 
 
 if __name__ == "__main__":
-    n = int(input("Enter number of elements: "))
-
-    arr = []
-    print("Enter the elements:")
-    for _ in range(n):
-        arr.append(int(input()))
+    arr = list(map(int, input("Enter numbers separated by space: ").split()))
 
     print("Original List:", arr)
     sorted_arr = merge_sort(arr)
