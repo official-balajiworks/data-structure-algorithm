@@ -2,7 +2,8 @@ import java.util.*;
 
 public class QueueExample {
     public static void main(String[] args) {
-        Queue<Integer> queue = new LinkedList<>();
+
+        java.util.Queue<Integer> queue = new java.util.LinkedList<>();
         Scanner sc = new Scanner(System.in);
 
         while (true) {
@@ -21,37 +22,33 @@ public class QueueExample {
                 case 1:
                     System.out.print("Enter value to enqueue: ");
                     int val = Integer.parseInt(sc.nextLine());
-                    queue.add(val); 
+                    queue.add(val);
                     System.out.println(val + " added to queue");
                     break;
 
                 case 2:
-                    if (!queue.isEmpty()) {
+                    if (!queue.isEmpty())
                         System.out.println("Dequeued: " + queue.remove());
-                    } else {
+                    else
                         System.out.println("Queue is empty!");
-                    }
                     break;
 
                 case 3:
-                    if (!queue.isEmpty()) {
-                        System.out.println("Front element: " + queue.peek());
-                    } else {
+                    if (!queue.isEmpty())
+                        System.out.println("Front: " + queue.peek());
+                    else
                         System.out.println("Queue is empty!");
-                    }
                     break;
 
                 case 4:
                     System.out.println("Queue: " + queue);
                     break;
 
-                case 5: // REAR
-                    if (!queue.isEmpty()) {
-                        System.out.println("Rear element: " +
-                            ((LinkedList<Integer>) queue).getLast());
-                    } else {
+                case 5:
+                    if (!queue.isEmpty())
+                        System.out.println("Rear: " + ((java.util.LinkedList<Integer>) queue).getLast());
+                    else
                         System.out.println("Queue is empty!");
-                    }
                     break;
 
                 case 6:
