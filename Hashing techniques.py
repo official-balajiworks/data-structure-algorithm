@@ -49,7 +49,6 @@ class QuadraticProbing:
         for i in range(self.size):
             print(f"{i} --> {self.table[i]}")
 
-
 class DoubleHashing:
     def __init__(self, size):
         self.size = size
@@ -59,25 +58,14 @@ class DoubleHashing:
         return key % self.size
 
     def h2(self, key):
-        # choose a prime smaller than size
-        R = prevprime(self.size)
-        step = R - (key % R)
-
-        if step == 0:
-            step = 1
-        return step
+        return prevprime(self.size) - (key % prevprime(self.size))
 
     def insert(self, key):
         index = self.h1(key)
         step = self.h2(key)
-        start = index
 
         while self.table[index] != -1:
             index = (index + step) % self.size
-
-            if index == start:
-                print("Hash Table Full")
-                return
 
         self.table[index] = key
 
