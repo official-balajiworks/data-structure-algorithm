@@ -1,5 +1,4 @@
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 
 public class LinkedListOperations {
     public static void main(String[] args) {
