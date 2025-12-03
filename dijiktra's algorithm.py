@@ -5,65 +5,44 @@ def dijkstra(graph, start):
     distance[start] = 0
     pq = [(0, start)]
 
-
-    """distance dictionary stores shortest distance from start → each node.
-
-Initially all are infinity.
-
-Starting node = distance 0.
-
-pq is a min-heap that stores (distance, node)"""
-    
     while pq:
-        current_dist, node = heapq.heappop(pq) 
-        
-        """Remove the node with smallest distance."""
-        
-        if current_dist > distance[node]:
-            continue
-        """ If the popped distance is greater than the recorded shortest distance, skip processing."""
+        c, n = heapq.heappop(pq)
 
-        for neighbor, weight in graph[node].items():
-            new_dist = current_dist + weight
-            if new_dist < distance[neighbor]:
-                distance[neighbor] = new_dist
-                heapq.heappush(pq, (new_dist, neighbor)) 
+        # Skip if this distance is outdated
+        if c > distance[n]:
+            continue
+
+        for ne, w in graph[n].items():
+            n_d = c + w
+            if n_d < distance[ne]:
+                distance[ne] = n_d
+                heapq.heappush(pq, (n_d, ne))
+                
     return distance
 
-    """Calculate new distance
 
-If it’s smaller than stored distance, update
-
-Push updated distance to priority queue"""
-
+# -------------------------
+# INPUT GRAPH
+# -------------------------
 graph = {}
 
 n = int(input("Enter number of nodes: "))
-
 print("Enter node names:")
-nodes = []
-for _ in range(n):
-    node = input().strip()
-    nodes.append(node)
+nodes = [input().strip() for _ in range(n)]
+for node in nodes:
     graph[node] = {}
 
-    """ Each node becomes a key in the graph dictionary.
-
-Initially, each node has an empty adjacency list."""
-
-
 e = int(input("\nEnter number of edges: "))
-
 print("Enter edges in format: node1 node2 weight")
 for _ in range(e):
     a, b, w = input().split()
     w = int(w)
     graph[a][b] = w
-    graph[b][a] = w   # UNDIRECTED graph
+    graph[b][a] = w  # UNDIRECTED graph
 
 start = input("\nEnter starting node: ").strip()
 
-# Run dijkstra
+# Run Dijkstra
 result = dijkstra(graph, start)
 
 # -------------------------
